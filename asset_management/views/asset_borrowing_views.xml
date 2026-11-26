@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="asset_borrow_view_list" model="ir.ui.view">
+        <field name="name">asset.master.borrow.list</field>
+        <field name="model">asset.master.borrow</field>
+        <field name="arch" type="xml">
+            <list string="Borrowing List">
+                <field name="borrowing_id"/>
+                <field name="borrowed_asset_name"/>
+                <field name="borrower_employee_name"/>
+                <field name="borrowing_quantity"/>
+                <field name="borrowed_at"/>
+                <field name="returned_at"/>
+                <field name="asset_borrowing_status"/>
+                <button name="return_asset" 
+                    type="object" 
+                    string="return"
+                    confirm="Are you sure want to return this asset?"
+                    invisible="asset_borrowing_status == 'returned'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="asset_borrow_view_form" model="ir.ui.view">
+        <field name="name">asset.master.borrow.form</field>
+        <field name="model">asset.master.borrow</field>
+        <field name="arch" type="xml">
+            <form string="Borrowing List">
+                <sheet>
+                    <group>
+                        <field name="borrowing_id"/>
+                        <field name="borrowed_asset_name"/>
+                        <field name="borrower_employee_name"/>
+                        <field name="borrowing_quantity"/>
+                        <field name="borrowed_at"/>
+                        <field name="returned_at" readonly="True"/>
+                        <field name="asset_borrowing_status" readonly="True"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="asset_borrow_action" model="ir.actions.act_window">
+        <field name="name">Borrowing Asset</field>
+        <field name="res_model">asset.master.borrow</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
